@@ -8,6 +8,12 @@
 // Own files
 #include "settings.h"
 
+#define DEBUG_APP
+
+#define SUCCESS 0 // This value defines successful executing of function
+#define WARNING 1 // This value defines executing of function with insignificant problems
+#define ERROR -1 // // This value defines executing of function with critical problems
+
 using IQmlEngine = QQmlApplicationEngine; // Qml engine interface
 using ISettingsEngine = Settings; // Settings engine interface
 
@@ -32,19 +38,26 @@ private:
     static int setupLanguage(ISettingsEngine *settingsEngine);
     // Use to control loaded settings
     static int setupSettings(ISettingsEngine *settingsEngine);
+    // Use to init files in root directory
+    static int loadFiles(ISettingsEngine *settingsEngine);
 };
 
 struct StartupResult {
+    // Constructor calculates result codes depends on their type
+    // data - list of result codes
+    // successful - number that means count of successful results
+    // warnings - number that means count of results with small problems
+    // errors - number that means count of results with large problems
     StartupResult(const QList<int> &data) {
         for (QList<int>::const_iterator it = data.begin(); it != data.end(); it++) {
             switch ((*it)) {
-            case 0:
+            case SUCCESS:
                 successful++;
                 break;
-            case 1:
+            case WARNING:
                 warnings++;
                 break;
-            case -1:
+            case ERROR:
                 errors++;
                 break;
             default:

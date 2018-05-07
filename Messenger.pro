@@ -1,4 +1,4 @@
-QT += quick network
+QT += quick network xml
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -15,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += Source/main.cpp \
     Source/startupcontroller.cpp \
     Source/settings.cpp \
-    Source/connector.cpp
+    Source/connector.cpp \
+    Source/xmlreader.cpp
 
 RESOURCES += qml.qrc
 
@@ -36,7 +37,9 @@ HEADERS += \
     Header/startupcontroller.h \
     Header/settings.h \
     Header/connector.h \
-    Header/connector.h
+    Header/connector.h \
+    Header/xmlreader.h
 
 INCLUDEPATH += \
-    Header
+    Header \
+    Source

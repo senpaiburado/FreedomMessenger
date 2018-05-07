@@ -11,8 +11,8 @@ int main(int argc, char *argv[])
 //#if defined(Q_OS_WIN)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 //#endif
-    QCoreApplication::setApplicationName(QString("Messenger"));
-    QCoreApplication::setApplicationVersion(QString("Alpha 1"));
+    QCoreApplication::setApplicationName(QString("Freedom Messenger"));
+    QCoreApplication::setApplicationVersion(QString("Alpha 1.0"));
     QCoreApplication::setOrganizationName(QString("SenDu"));
 
     QGuiApplication app(argc, argv);

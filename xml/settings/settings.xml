@@ -1,0 +1,7 @@
+<main_settings>
+	<id = "build_version" value="Alpha 1.0"/>
+	<id = "notifications_enabled" value="true"/>
+	<id = "private_chat_notifications_enabled" value="true"/>
+	<id = "group_chat_notifications_enabled" value="true"/>
+	<id = "channel_notifications_enabled" value="true"/>
+</main_settings>
