@@ -2,7 +2,7 @@
 #define CONNECTOR_H
 
 #include <QObject>
-#include <QTcpSocket>
+#include <QWebSocket>
 
 class Connector : public QObject
 {
@@ -10,11 +10,15 @@ class Connector : public QObject
 public:
     explicit Connector(QObject *parent = nullptr);
 
+    bool connectToServer(const QString &hostAddr, int port = 19283);
+    Q_INVOKABLE void sendRequest(const QByteArray &request);
+    QString getError() const;
+
 private:
-    QTcpSocket *socket;
+    QWebSocket *socket;
 
 public slots:
-    void readMessage();
+    void readMessage(const QString &message);
 };
 
 #endif // CONNECTOR_H

@@ -1,8 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
+#include <QQmlContext>
 
 #include "startupcontroller.h"
+#include "connector.h"
 
 void processStartupResult(const StartupResult *res);
 
@@ -23,9 +25,18 @@ int main(int argc, char *argv[])
     processStartupResult(startupRes);
     delete startupRes;
 
+    Connector connector;
+
+    engine.rootContext()->setContextProperty("connectorHandler", &connector);
+
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
+    connector.sendRequest("I'm new used!");
+    if (connector.connectToServer(QString("127.0.0.1")))
+        ;
+    else
+        qDebug() << "Socket error: " << connector.getError();
 
     return app.exec();
 }
